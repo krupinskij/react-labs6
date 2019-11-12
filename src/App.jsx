@@ -1,7 +1,36 @@
 import React from 'react'
+import EmployeesList from './EmployeesList'
 
-const App = () => (
-  <h1>Minimal React</h1>  
-)
+class App extends React.Component {
+
+  state = {
+    employees: []
+  }
+
+  componentDidMount() {
+    fetch(`http://localhost:3000/employees`)
+
+      .then(resp => resp.json())
+      .then(resp => {
+
+        this.setState({
+          employees: resp
+        })
+
+      })
+  }
+
+  render() {
+
+    
+      return (
+        <div>
+          <EmployeesList employees={this.state.employees} />
+        </div>
+      )
+    
+    
+  }
+}
 
 export default App
