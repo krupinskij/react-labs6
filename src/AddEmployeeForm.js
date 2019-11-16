@@ -10,7 +10,19 @@ class AddEmployeeForm extends React.Component {
         age: "",
         company: "",
         email: "",
-        isActive: false
+        isActive: false,
+
+        modalStyle: {
+            position: 'absolute',
+            height: '20%',
+            width: '100%',
+    
+            background: 'gray',
+            display: 'none'
+    
+        }
+
+
     }
 
     handleValueChange = (event) => {
@@ -35,13 +47,46 @@ class AddEmployeeForm extends React.Component {
         }
 
         event.target.reset();
+        this.setState({
+            modalStyle: {
+                position: 'absolute',
+                height: '20%',
+        
+                background: 'gray',
+                display: 'block'
+        
+            }
+        })
+
 
         fetch('http://localhost:3000/employees', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
-        }).then(this.props.refreshEmployees);
+        }).then( () => {
+            this.setState({
+                modalStyle: {
+                    position: 'absolute',
+                    height: '20%',
+            
+                    background: 'gray',
+                    display: 'none'
+            
+                }
+            })
+            this.props.refreshEmployees(),
+            this.props.changeActivePanel("EmployeesList")
+        });
       }
+
+      modalStyle = {
+        position: 'absolute',
+        height: '20%',
+
+        background: 'gray',
+        display: 'none'
+
+    }
 
     render() {
 
@@ -57,6 +102,9 @@ class AddEmployeeForm extends React.Component {
         
         return(
             <div style={ divStyle }>
+                <div style={ this.state.modalStyle }>
+                    Saving...
+                </div>
                 <form onSubmit={ this.handleSubmit } style={ formStyle } method="POST" action="">
 
                     <label htmlFor="addNewInp">Podaj identyfikator</label>
@@ -77,8 +125,8 @@ class AddEmployeeForm extends React.Component {
                     <label htmlFor="addActiveInp">Zaznacz jeśli aktywny</label>
                     <input type="checkbox" name="isActive" id="addActiveInp" onChange={ this.handleValueChange } />
 
-                    <input type="submit" value="Zapisz"  onClick={ () => { this.props.changeActivePanel("EmployeesList") } }/>
-                    <input type="reset" value="Skasuj"  onClick={ () => { this.props.changeActivePanel("EmployeesList") } }/>
+                    <input type="submit" value="Zapisz"/>
+                    <input type="reset" value="Skasuj" onClick={ () => { this.props.changeActivePanel("EmployeesList") } }/>
                 </form>
             </div>
         )
