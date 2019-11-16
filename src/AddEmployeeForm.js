@@ -74,7 +74,7 @@ class AddEmployeeForm extends React.Component {
             
                 }
             })
-            this.props.refreshEmployees(),
+            this.props.refreshEmployees();
             this.props.changeActivePanel("EmployeesList")
         });
       }

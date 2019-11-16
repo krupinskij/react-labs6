@@ -51,6 +51,7 @@ class App extends React.Component {
     return (
       <div>
         <EmployeesList employees={this.state.employees}
+          refreshEmployees={ this.refreshEmployees }
           changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
 
         <AddEmployeeForm refreshEmployees={ this.refreshEmployees } changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />

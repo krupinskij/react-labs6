@@ -16,7 +16,7 @@ class EmployeesList extends React.Component {
         const employeesList = this.props.employees.length ?
             (this.props.employees.map(employee => {
                 return (
-                    <Employee key={employee._id} data={employee} />
+                    <Employee key={employee._id} data={employee} refreshEmployees={ this.props.refreshEmployees } />
                 )
             })) : (
                 <p>Loading...</p>
