@@ -18,12 +18,11 @@ class App extends React.Component {
         this.setState({
           employees: resp
         })
-
       })
   }
 
   refreshEmployees = event => {
-    console.log("refresh employees")
+
     fetch(`http://localhost:3000/employees`)
 
       .then(resp => resp.json())
@@ -37,9 +36,6 @@ class App extends React.Component {
   }
 
   changeActivePanel = (activePanelName) => {
-
-    console.log(activePanelName);
-
     this.setState({
       activePanel: activePanelName
     })

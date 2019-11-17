@@ -3,33 +3,71 @@ import Employee from './Employee'
 
 class EmployeesList extends React.Component {
 
-    state = {
-        panelName: "EmployeesList"
-    }
+	state = {
+		panelName: "EmployeesList"
+	}
 
-    render() {
+	render() {
 
-        const divStyle = {
-            display: this.props.activePanel===this.state.panelName ? "block" : "none"
-        }
+		const containerStyle = {
+			display: this.props.activePanel === this.state.panelName ? "block" : "none",
+			width: '100%'
+		}
 
-        const employeesList = this.props.employees.length ?
-            (this.props.employees.map(employee => {
-                return (
-                    <Employee key={employee._id} data={employee} refreshEmployees={ this.props.refreshEmployees } />
-                )
-            })) : (
-                <p>Loading...</p>
-            )
+		const buttonStyle = {
+			width: '50%',
+			height: '50px',
+			margin: '10px 25%',
 
-        return (
-            <div style={ divStyle }> 
-                {employeesList}
+			backgroundColor: '#0b0',
+			border: '0',
+			borderRadius: '10px',
+			boxShadow: '0 0 5px #000',
 
-                <button onClick={ () => { this.props.changeActivePanel("AddEmployeeForm") } }>Add employee</button>
-            </div>
-        )
-    }
+			fontSize: '120%',
+			color: 'white',
+
+			cursor: 'pointer'
+		}
+
+		const divStyle = {
+			display: 'flex',
+			flexWrap: 'wrap'
+		}
+
+		const modalStyle = {
+			width: '100%',
+			padding: '5% 0',
+
+			fontSize: '200%',
+			fontFamily: 'Arial, Helvetica, sans-serif',
+			textAlign: 'center',
+
+			background: 'gray',
+			color: 'white'
+		}
+
+		const employeesList = this.props.employees.length ?
+			(this.props.employees.map(employee => {
+				return (
+					<Employee key={employee._id} data={employee} refreshEmployees={this.props.refreshEmployees} />
+				)
+			})) : (
+				<div style={modalStyle}>Loading...</div>
+			)
+
+		return (
+			<div style={ containerStyle }>
+				<div style={divStyle}>
+					{employeesList}
+				</div>
+
+				<button style={buttonStyle} onClick={() => { this.props.changeActivePanel("AddEmployeeForm") }}>
+					Add employee
+        </button>
+			</div>
+		)
+	}
 
 }
 

@@ -9,14 +9,6 @@
       "email": "maricelawolf@apextri.com"
     },
     {
-      "id": "5dc9bdc63d2a39982fbf83d8",
-      "isActive": true,
-      "age": 21,
-      "name": "Bates Parker",
-      "company": "MIRACULA",
-      "email": "batesparker@miracula.com"
-    },
-    {
       "id": "5dc9bdc6f0c10cec4f579a65",
       "isActive": false,
       "age": 39,
@@ -31,14 +23,6 @@
       "name": "Alisha Stephenson",
       "company": "SURETECH",
       "email": "alishastephenson@suretech.com"
-    },
-    {
-      "id": "5dc9bdc6b0001d85ead79e47",
-      "isActive": false,
-      "age": 25,
-      "name": "Bryant Mccormick",
-      "company": "TALKALOT",
-      "email": "bryantmccormick@talkalot.com"
     },
     {
       "id": "5dc9bdc675d0721b2d9812a4",
@@ -57,28 +41,12 @@
       "email": "kaylasimon@talendula.com"
     },
     {
-      "id": "5dc9bdc69ba84395b4ca5705",
-      "isActive": true,
-      "age": 39,
-      "name": "Lindsey Cabrera",
-      "company": "GAPTEC",
-      "email": "lindseycabrera@gaptec.com"
-    },
-    {
       "id": "5dc9bdc6fb9ede50b4c65fed",
       "isActive": true,
       "age": 21,
       "name": "Ross Dickerson",
       "company": "PROXSOFT",
       "email": "rossdickerson@proxsoft.com"
-    },
-    {
-      "id": "5dc9bdc6485ccfcec093eb67",
-      "isActive": false,
-      "age": 25,
-      "name": "Mcdonald Hubbard",
-      "company": "PAPRICUT",
-      "email": "mcdonaldhubbard@papricut.com"
     },
     {
       "id": "5dc9bdc6d54eb99cb821fb5f",
@@ -105,14 +73,6 @@
       "email": "trudybauer@comtext.com"
     },
     {
-      "id": "5dc9bdc6b62ea8498f1e2da4",
-      "isActive": true,
-      "age": 39,
-      "name": "Raquel Walter",
-      "company": "PROSURE",
-      "email": "raquelwalter@prosure.com"
-    },
-    {
       "id": "5dc9bdc6759d1f047616ed7e",
       "isActive": true,
       "age": 34,
@@ -135,6 +95,22 @@
       "name": "Marcia Pittman",
       "company": "MANUFACT",
       "email": "marciapittman@manufact.com"
+    },
+    {
+      "name": "Adam Abacki",
+      "age": 21,
+      "company": "Adam SA",
+      "email": "aa@wp.pl",
+      "isActive": true,
+      "id": "NzFPqug"
+    },
+    {
+      "name": "Bartosz Babacki",
+      "age": 23,
+      "company": "Bartosz SA",
+      "email": "bb@wp.pl",
+      "isActive": false,
+      "id": "W3Qzxn3"
     }
   ]
 }

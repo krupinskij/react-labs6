@@ -2,135 +2,194 @@ import React from 'react'
 
 class AddEmployeeForm extends React.Component {
 
-    state = {
-        panelName: "AddEmployeeForm",
+	state = {
+		panelName: "AddEmployeeForm",
 
-        _id: "",
-        name: "",
-        age: "",
-        company: "",
-        email: "",
-        isActive: false,
+		name: "",
+		age: "",
+		company: "",
+		email: "",
+		isActive: false,
 
-        modalStyle: {
-            position: 'absolute',
-            height: '20%',
-            width: '100%',
-    
-            background: 'gray',
-            display: 'none'
-    
-        }
+		modalStyle: {
+			position: 'absolute',
+			width: '100%',
+			left: '0',
+			top: '30%',
+			padding: '5% 0',
+
+			fontSize: '200%',
+			fontFamily: 'Arial, Helvetica, sans-serif',
+			textAlign: 'center',
+
+			background: 'gray',
+			color: 'white',
+			display: 'none',
+
+			zIndex: '1'
+
+		}
+	}
+
+	handleValueChange = (event) => {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+
+	handleSubmit = (event) => {
+		console.log(event.target);
+		event.preventDefault();
+
+		const data = {
+			_id: this.state._id,
+			name: this.state.name,
+			age: +this.state.age,
+			company: this.state.company,
+			email: this.state.email,
+			isActive: this.state.isActive === "on" ? true : false
+		}
+
+		event.target.reset();
+		this.setState({
+			modalStyle: {
+				position: 'absolute',
+				height: '20%',
+				width: '100%',
+
+				background: 'gray',
+				display: 'block'
+
+			}
+		})
 
 
-    }
+		fetch('http://localhost:3000/employees', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data)
+		}).then(() => {
+			this.setState({
+				modalStyle: {
+					position: 'absolute',
+					height: '20%',
 
-    handleValueChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+					background: 'gray',
+					display: 'none'
 
-        console.log(this.state);
-    }
+				}
+			})
+			this.props.refreshEmployees();
+			this.props.changeActivePanel("EmployeesList")
+		});
+	}
 
-    handleSubmit = (event) => {
-        console.log(event.target);
-        event.preventDefault();
+	render() {
 
-        const data = {
-            _id: this.state._id,
-            name: this.state.name,
-            age: +this.state.age,
-            company: this.state.company,
-            email: this.state.email,
-            isActive: this.state.isActive==="on" ? true : false
-        }
+		const divStyle = {
+			display: this.props.activePanel === this.state.panelName ? "block" : "none",
+			position: 'relative',
+			borderRadius: '10px',
+			boxShadow: '1px 3px 7px grey',
+			margin: '30px 20%',
+			fontSize: '175%'
+		}
 
-        event.target.reset();
-        this.setState({
-            modalStyle: {
-                position: 'absolute',
-                height: '20%',
-        
-                background: 'gray',
-                display: 'block'
-        
-            }
-        })
+		const formStyle = {
+			padding: '5% 30px',
+		}
 
+		const gridStyle = {
+			display: 'grid',
+			gridTemplateColumns: '1fr 3fr',
+			gap: '20px',
+		}
 
-        fetch('http://localhost:3000/employees', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        }).then( () => {
-            this.setState({
-                modalStyle: {
-                    position: 'absolute',
-                    height: '20%',
-            
-                    background: 'gray',
-                    display: 'none'
-            
-                }
-            })
-            this.props.refreshEmployees();
-            this.props.changeActivePanel("EmployeesList")
-        });
-      }
+		const labelStyle = {
+			justifySelf: 'flex-end'
+		}
 
-      modalStyle = {
-        position: 'absolute',
-        height: '20%',
+		const inputStyle = {
+			justifySelf: 'flex-start',
+			width: '90%',
 
-        background: 'gray',
-        display: 'none'
+			padding: '5px 15px',
+			fontSize: '90%'
+		}
 
-    }
+		const checkboxStyle = {
+			justifySelf: 'flex-start'
+		}
 
-    render() {
+		const buttonsStyle = {
+			width: '70%',
+			margin: '30px 15% 0 15%'
+		}
 
-        const divStyle = {
-            display: this.props.activePanel === this.state.panelName ? "block" : "none"
-        }
+		const submitStyle = {
+			width: '30%',
+			height: '40px',
+			margin: '0 10%',
 
-        const formStyle = {
-            border: '1px solid black',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr'
-        }
-        
-        return(
-            <div style={ divStyle }>
-                <div style={ this.state.modalStyle }>
-                    Saving...
-                </div>
-                <form onSubmit={ this.handleSubmit } style={ formStyle } method="POST" action="">
+			backgroundColor: '#0b0',
+			border: '0',
+			borderRadius: '10px',
+			boxShadow: '0 0 5px #000',
 
-                    <label htmlFor="addNewInp">Podaj identyfikator</label>
-                    <input type="text" name="_id" id="addIdInp" onChange={ this.handleValueChange } />
+			fontSize: '100%',
+			color: 'white',
 
-                    <label htmlFor="addNewInp">Podaj imię i nazwisko</label>
-                    <input type="text" name="name" id="addNameInp" onChange={ this.handleValueChange } />
+			cursor: 'pointer'
+		}
 
-                    <label htmlFor="addAgeInp">Podaj wiek</label>
-                    <input type="number" name="age" id="addAgeInp" onChange={ this.handleValueChange } />
+		const cancelStyle = {
+			width: '30%',
+			height: '40px',
+			margin: '0 10%',
 
-                    <label htmlFor="addCompanyInp">Podaj nazwę firmy</label>
-                    <input type="text" name="company" id="addCompanyInp" onChange={ this.handleValueChange } />
+			backgroundColor: '#b00',
+			border: '0',
+			borderRadius: '10px',
+			boxShadow: '0 0 5px #000',
 
-                    <label htmlFor="addEmailInp">Podaj maila</label>
-                    <input type="email" name="email" id="addEmailInp" onChange={ this.handleValueChange } />
+			fontSize: '100%',
+			color: 'white',
 
-                    <label htmlFor="addActiveInp">Zaznacz jeśli aktywny</label>
-                    <input type="checkbox" name="isActive" id="addActiveInp" onChange={ this.handleValueChange } />
+			cursor: 'pointer'
+		}
 
-                    <input type="submit" value="Zapisz"/>
-                    <input type="reset" value="Skasuj" onClick={ () => { this.props.changeActivePanel("EmployeesList") } }/>
-                </form>
-            </div>
-        )
-    }
+		return (
+			<div style={divStyle}>
+				<div style={this.state.modalStyle}> Saving... </div>
+				<form onSubmit={this.handleSubmit} style={formStyle} method="POST" action="">
+
+					<div style={gridStyle} >
+						<label style={labelStyle} htmlFor="addNewInp">Name:</label>
+						<input style={inputStyle} type="text" name="name" id="addNameInp" onChange={this.handleValueChange} />
+
+						<label style={labelStyle} htmlFor="addAgeInp">Age:</label>
+						<input style={inputStyle} type="number" name="age" id="addAgeInp" onChange={this.handleValueChange} />
+
+						<label style={labelStyle} htmlFor="addCompanyInp">Company:</label>
+						<input style={inputStyle} type="text" name="company" id="addCompanyInp" onChange={this.handleValueChange} />
+
+						<label style={labelStyle} htmlFor="addEmailInp">Email:</label>
+						<input style={inputStyle} type="email" name="email" id="addEmailInp" onChange={this.handleValueChange} />
+
+						<label style={labelStyle} htmlFor="addActiveInp">Active:</label>
+						<input style={checkboxStyle} type="checkbox" name="isActive" id="addActiveInp" onChange={this.handleValueChange} />
+
+					</div>
+
+					<div style={buttonsStyle}>
+						<input style={submitStyle} type="submit" value="Save" />
+						<input style={cancelStyle} type="reset" value="Cancel" onClick={() => { this.props.changeActivePanel("EmployeesList") }} />
+					</div>
+
+				</form>
+			</div>
+		)
+	}
 }
 
 export default AddEmployeeForm
