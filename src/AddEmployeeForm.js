@@ -64,7 +64,7 @@ class AddEmployeeForm extends React.Component {
 		})
 
 
-		fetch('http://localhost:3000/employees', {
+		fetch('http://localhost:3004/employees', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)

@@ -47,7 +47,7 @@ class Employee extends React.Component {
 			}
 		})
 
-		fetch('http://localhost:3000/employees/' + this.props.data.id, {
+		fetch('http://localhost:3004/employees/' + this.props.data.id, {
 			method: 'DELETE',
 		}).then(() => {
 			this.setState({

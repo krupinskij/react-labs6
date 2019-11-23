@@ -81,14 +81,6 @@
       "email": "beulahmichael@exosis.com"
     },
     {
-      "id": "5dc9bdc669395dcbe481c1b5",
-      "isActive": false,
-      "age": 38,
-      "name": "Sellers Morrow",
-      "company": "EXTREMO",
-      "email": "sellersmorrow@extremo.com"
-    },
-    {
       "id": "5dc9bdc682e259cc7078b891",
       "isActive": true,
       "age": 34,
@@ -103,14 +95,6 @@
       "email": "aa@wp.pl",
       "isActive": true,
       "id": "NzFPqug"
-    },
-    {
-      "name": "Bartosz Babacki",
-      "age": 23,
-      "company": "Bartosz SA",
-      "email": "bb@wp.pl",
-      "isActive": false,
-      "id": "W3Qzxn3"
     }
   ]
 }

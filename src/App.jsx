@@ -10,7 +10,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/employees`)
+    fetch(`http://localhost:3004/employees`)
 
       .then(resp => resp.json())
       .then(resp => {
@@ -23,7 +23,7 @@ class App extends React.Component {
 
   refreshEmployees = event => {
 
-    fetch(`http://localhost:3000/employees`)
+    fetch(`http://localhost:3004/employees`)
 
       .then(resp => resp.json())
       .then(resp => {
