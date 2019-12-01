@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class PageEmployee extends React.Component {
 
@@ -43,7 +43,6 @@ class PageEmployee extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-
 		const data = {
 			_id: this.state._id,
 			name: this.state.name,
@@ -71,26 +70,12 @@ class PageEmployee extends React.Component {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)
-		}).then(() => {
+		})
+		.then(() => {
 
 			
 			this.props.refreshEmployees()
-			.then(() => {
-
-				this.setState((prevState, props) => ({
-					modalStyle: {
-						position: 'absolute',
-						height: '20%',
-	
-						background: 'gray',
-						display: 'none'
-	
-					},
-
-					redirect: true
-				}))
-
-			});
+			.then(() => this.props.history.push('/'));
 		});
 	}
 
@@ -167,9 +152,8 @@ class PageEmployee extends React.Component {
 			cursor: 'pointer'
 		}
 
-		if (this.state.redirect === true) {
-      return <Redirect to='/' />
-    }
+		console.log(this.props);
+		console.log(withRouter);
 
 		return (
 			
@@ -208,4 +192,4 @@ class PageEmployee extends React.Component {
 	}
 }
 
-export default PageEmployee
+export default withRouter(PageEmployee)

@@ -44,7 +44,6 @@ class App extends React.Component {
 
     return(
       <Router>
-        <Switch>
           <Route exact path="/">
             <PageEmployeesList employees={this.state.employees} refreshEmployees={ this.refreshEmployees } >
             </PageEmployeesList>
@@ -54,7 +53,6 @@ class App extends React.Component {
             <PageEmployee refreshEmployees={ this.refreshEmployees } >
             </PageEmployee>
           </Route>
-        </Switch>
       </Router>
     )    
   }
