@@ -95,46 +95,6 @@
       "email": "bb@wp.pl",
       "isActive": true,
       "id": "-kgwZtK"
-    },
-    {
-      "name": "Czarek Cabacki",
-      "age": 32,
-      "company": "Czarek SA",
-      "email": "cc@wp.pl",
-      "isActive": false,
-      "id": "7wcg1M_"
-    },
-    {
-      "name": "Emil Ebacki",
-      "age": 21,
-      "company": "Emil SA",
-      "email": "ee@wp.pl",
-      "isActive": false,
-      "id": "NlVwvge"
-    },
-    {
-      "name": "Filip Fabacki",
-      "age": 23,
-      "company": "Filip SA",
-      "email": "ff@wp.pl",
-      "isActive": false,
-      "id": "wRFfbPT"
-    },
-    {
-      "name": "Grzegorz Gabacki",
-      "age": 45,
-      "company": "Grzegorz SA",
-      "email": "gg@wp.pl",
-      "isActive": false,
-      "id": "-xWDCMy"
-    },
-    {
-      "name": "Ilona Ibacka",
-      "age": 26,
-      "company": "Ilona SA",
-      "email": "ii@wp.pl",
-      "isActive": true,
-      "id": "v_4eQIt"
     }
   ]
 }

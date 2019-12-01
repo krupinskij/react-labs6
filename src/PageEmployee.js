@@ -10,7 +10,7 @@ class PageEmployee extends React.Component {
 		email: "",
 		isActive: false,
 
-		redirect: false,
+		busy: false,
 
 		modalStyle: {
 			position: 'absolute',
@@ -25,7 +25,6 @@ class PageEmployee extends React.Component {
 
 			background: 'gray',
 			color: 'white',
-			display: 'none',
 
 			zIndex: '1'
 
@@ -54,15 +53,7 @@ class PageEmployee extends React.Component {
 
 		event.target.reset();
 		this.setState({
-			modalStyle: {
-				position: 'absolute',
-				height: '20%',
-				width: '100%',
-
-				background: 'gray',
-				display: 'block'
-
-			}
+			busy: true
 		})
 
 
@@ -72,8 +63,6 @@ class PageEmployee extends React.Component {
 			body: JSON.stringify(data)
 		})
 		.then(() => {
-
-			
 			this.props.refreshEmployees()
 			.then(() => this.props.history.push('/'));
 		});
@@ -152,13 +141,13 @@ class PageEmployee extends React.Component {
 			cursor: 'pointer'
 		}
 
-		console.log(this.props);
-		console.log(withRouter);
-
 		return (
 			
 			<div style={divStyle}>
-				<div style={this.state.modalStyle}> Saving... </div>
+				{
+					this.state.busy && <div style={this.state.modalStyle}> Saving... </div>
+				}
+
 				<form onSubmit={this.handleSubmit} style={formStyle} method="POST" action="">
 
 					<div style={gridStyle} >

@@ -3,6 +3,8 @@ import React from 'react'
 class Employee extends React.Component {
 
 	state = {
+		busy: false,
+
 		modalStyle: {
 			position: 'absolute',
 			width: '100%',
@@ -16,7 +18,6 @@ class Employee extends React.Component {
 
 			background: 'gray',
 			color: 'white',
-			display: 'none',
 
 			zIndex: '1'
 		},
@@ -27,24 +28,7 @@ class Employee extends React.Component {
 	deleteEmployee = event => {
 
 		this.setState({
-			modalStyle: {
-				position: 'absolute',
-				width: '100%',
-				left: '0',
-				top: '30%',
-				padding: '5% 0',
-	
-				fontSize: '200%',
-				fontFamily: 'Arial, Helvetica, sans-serif',
-				textAlign: 'center',
-	
-				background: 'gray',
-				color: 'white',
-				display: 'block',
-	
-				zIndex: '1'
-	
-			}
+			busy: true
 		})
 
 		fetch('http://localhost:3004/employees/' + this.props.data.id, {
@@ -90,10 +74,10 @@ class Employee extends React.Component {
 		return (
 
 			<div style={containerStyle}>
-				<div style={this.state.modalStyle}>
-					Deleting...
-        </div>
-
+				{
+					this.state.busy && <div style={this.state.modalStyle}>Deleting...</div>
+				}
+				
 				<p>Name: {this.props.data.name}</p>
 				<p>Age: {this.props.data.age}</p>
 				<p>Active: {this.props.data.isActive ? "Yes" : "No"}</p>
