@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, Redirect } from "react-router-dom";
 
 class PageEmployee extends React.Component {
 
@@ -8,6 +9,8 @@ class PageEmployee extends React.Component {
 		company: "",
 		email: "",
 		isActive: false,
+
+		redirect: false,
 
 		modalStyle: {
 			position: 'absolute',
@@ -82,7 +85,9 @@ class PageEmployee extends React.Component {
 						background: 'gray',
 						display: 'none'
 	
-					}
+					},
+
+					redirect: true
 				}))
 
 			});
@@ -162,7 +167,12 @@ class PageEmployee extends React.Component {
 			cursor: 'pointer'
 		}
 
+		if (this.state.redirect === true) {
+      return <Redirect to='/' />
+    }
+
 		return (
+			
 			<div style={divStyle}>
 				<div style={this.state.modalStyle}> Saving... </div>
 				<form onSubmit={this.handleSubmit} style={formStyle} method="POST" action="">
@@ -187,7 +197,9 @@ class PageEmployee extends React.Component {
 
 					<div style={buttonsStyle}>
 						<input style={submitStyle} type="submit" value="Save" />
-						<input style={cancelStyle} type="reset" value="Cancel" />
+						<Link to="/">
+							<input style={cancelStyle} type="reset" value="Cancel" />
+						</Link>
 					</div>
 
 				</form>
