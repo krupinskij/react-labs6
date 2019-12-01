@@ -1,6 +1,6 @@
 import React from 'react'
-import EmployeesList from './EmployeesList'
-import AddEmployeeForm from './AddEmployeeForm'
+import PageEmployeesList from './PageEmployeesList'
+import PageEmployee from './PageEmployee'
 
 class App extends React.Component {
 
@@ -23,38 +23,44 @@ class App extends React.Component {
 
   refreshEmployees = event => {
 
-    fetch(`http://localhost:3004/employees`)
+    return fetch(`http://localhost:3004/employees`)
 
       .then(resp => resp.json())
       .then(resp => {
 
-        this.setState({
-          employees: resp,
-        })
+        this.setState((prevState, props) => ({
+          employees: resp
+        }))
 
       })
   }
 
   changeActivePanel = (activePanelName) => {
-    this.setState({
+    this.setState((prevState, props) => ({
       activePanel: activePanelName
-    })
+    }))
   }
 
   render() {
 
+    if (this.state.activePanel === "EmployeesList") {
+      return(
+        <div>
+          <PageEmployeesList employees={this.state.employees}
+            refreshEmployees={ this.refreshEmployees }
+            changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
 
-    return (
-      <div>
-        <EmployeesList employees={this.state.employees}
-          refreshEmployees={ this.refreshEmployees }
-          changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
-
-        <AddEmployeeForm refreshEmployees={ this.refreshEmployees } changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
-      </div>
-    )
-
-
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          <PageEmployee refreshEmployees={ this.refreshEmployees } changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
+      
+        </div>
+      )
+    }
+    
   }
 }
 

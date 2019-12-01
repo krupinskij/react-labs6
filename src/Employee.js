@@ -50,26 +50,6 @@ class Employee extends React.Component {
 		fetch('http://localhost:3004/employees/' + this.props.data.id, {
 			method: 'DELETE',
 		}).then(() => {
-			this.setState({
-				modalStyle: {
-					position: 'absolute',
-					width: '100%',
-					left: '0',
-					top: '30%',
-					padding: '5% 0',
-		
-					fontSize: '200%',
-					fontFamily: 'Arial, Helvetica, sans-serif',
-					textAlign: 'center',
-		
-					background: 'gray',
-					color: 'white',
-					display: 'none',
-		
-					zIndex: '1'
-		
-				}
-			})
 			this.props.refreshEmployees()
 		});
 	}

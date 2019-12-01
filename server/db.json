@@ -89,12 +89,36 @@
       "email": "marciapittman@manufact.com"
     },
     {
-      "name": "Adam Abacki",
+      "name": "Bartosz Babacki",
       "age": 21,
-      "company": "Adam SA",
-      "email": "aa@wp.pl",
+      "company": "Bartosz SA",
+      "email": "bb@wp.pl",
       "isActive": true,
-      "id": "NzFPqug"
+      "id": "-kgwZtK"
+    },
+    {
+      "name": "Czarek Cabacki",
+      "age": 32,
+      "company": "Czarek SA",
+      "email": "cc@wp.pl",
+      "isActive": false,
+      "id": "7wcg1M_"
+    },
+    {
+      "name": "Daniel Dabacki",
+      "age": 23,
+      "company": "Daniel SA",
+      "email": "dd@wp.pl",
+      "isActive": true,
+      "id": "6UoZ7pb"
+    },
+    {
+      "name": "Emil Ebacki",
+      "age": 21,
+      "company": "Emil SA",
+      "email": "ee@wp.pl",
+      "isActive": false,
+      "id": "NlVwvge"
     }
   ]
 }

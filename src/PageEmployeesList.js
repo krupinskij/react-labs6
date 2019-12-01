@@ -1,7 +1,7 @@
 import React from 'react'
 import Employee from './Employee'
 
-class EmployeesList extends React.Component {
+class PageEmployeesList extends React.Component {
 
 	state = {
 		panelName: "EmployeesList"
@@ -10,7 +10,6 @@ class EmployeesList extends React.Component {
 	render() {
 
 		const containerStyle = {
-			display: this.props.activePanel === this.state.panelName ? "block" : "none",
 			width: '100%'
 		}
 
@@ -71,4 +70,4 @@ class EmployeesList extends React.Component {
 
 }
 
-export default EmployeesList
+export default PageEmployeesList

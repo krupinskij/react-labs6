@@ -1,6 +1,6 @@
 import React from 'react'
 
-class AddEmployeeForm extends React.Component {
+class PageEmployee extends React.Component {
 
 	state = {
 		panelName: "AddEmployeeForm",
@@ -32,13 +32,15 @@ class AddEmployeeForm extends React.Component {
 	}
 
 	handleValueChange = (event) => {
-		this.setState({
-			[event.target.name]: event.target.value
-		})
+		const value = event.target.value;
+		const name = event.target.name
+		
+		this.setState((prevState, props) => ({
+			[name]: value
+		}))
 	}
 
 	handleSubmit = (event) => {
-		console.log(event.target);
 		event.preventDefault();
 
 		const data = {
@@ -69,25 +71,31 @@ class AddEmployeeForm extends React.Component {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)
 		}).then(() => {
-			this.setState({
-				modalStyle: {
-					position: 'absolute',
-					height: '20%',
 
-					background: 'gray',
-					display: 'none'
+			
+			this.props.refreshEmployees()
+			.then(() => {
 
-				}
-			})
-			this.props.refreshEmployees();
-			this.props.changeActivePanel("EmployeesList")
+				this.setState((prevState, props) => ({
+					modalStyle: {
+						position: 'absolute',
+						height: '20%',
+	
+						background: 'gray',
+						display: 'none'
+	
+					}
+				}))
+
+				this.props.changeActivePanel("EmployeesList");
+
+			});
 		});
 	}
 
 	render() {
 
 		const divStyle = {
-			display: this.props.activePanel === this.state.panelName ? "block" : "none",
 			position: 'relative',
 			borderRadius: '10px',
 			boxShadow: '1px 3px 7px grey',
@@ -192,4 +200,4 @@ class AddEmployeeForm extends React.Component {
 	}
 }
 
-export default AddEmployeeForm
+export default PageEmployee
