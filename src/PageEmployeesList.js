@@ -3,10 +3,6 @@ import Employee from './Employee'
 
 class PageEmployeesList extends React.Component {
 
-	state = {
-		panelName: "EmployeesList"
-	}
-
 	render() {
 
 		const containerStyle = {
@@ -56,12 +52,12 @@ class PageEmployeesList extends React.Component {
 			)
 
 		return (
-			<div style={ containerStyle }>
+			<div style={containerStyle}>
 				<div style={divStyle}>
 					{employeesList}
 				</div>
 
-				<button style={buttonStyle} onClick={() => { this.props.changeActivePanel("AddEmployeeForm") }}>
+				<button style={buttonStyle}>
 					Add employee
         </button>
 			</div>

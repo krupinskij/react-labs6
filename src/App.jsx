@@ -1,12 +1,17 @@
 import React from 'react'
 import PageEmployeesList from './PageEmployeesList'
 import PageEmployee from './PageEmployee'
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from "react-router-dom";
 
 class App extends React.Component {
 
   state = {
-    employees: [],
-    activePanel: "EmployeesList"
+    employees: []
   }
 
   componentDidMount() {
@@ -35,32 +40,23 @@ class App extends React.Component {
       })
   }
 
-  changeActivePanel = (activePanelName) => {
-    this.setState((prevState, props) => ({
-      activePanel: activePanelName
-    }))
-  }
-
   render() {
 
-    if (this.state.activePanel === "EmployeesList") {
-      return(
-        <div>
-          <PageEmployeesList employees={this.state.employees}
-            refreshEmployees={ this.refreshEmployees }
-            changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
+    return(
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <PageEmployeesList employees={this.state.employees} refreshEmployees={ this.refreshEmployees } >
+            </PageEmployeesList>
+          </Route>
 
-        </div>
-      )
-    } else {
-      return(
-        <div>
-          <PageEmployee refreshEmployees={ this.refreshEmployees } changeActivePanel={this.changeActivePanel} activePanel={this.state.activePanel} />
-      
-        </div>
-      )
-    }
-    
+          <Route path="/new">
+            <PageEmployee refreshEmployees={ this.refreshEmployees } >
+            </PageEmployee>
+          </Route>
+        </Switch>
+      </Router>
+    )    
   }
 }
 

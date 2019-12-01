@@ -3,8 +3,6 @@ import React from 'react'
 class PageEmployee extends React.Component {
 
 	state = {
-		panelName: "AddEmployeeForm",
-
 		name: "",
 		age: "",
 		company: "",
@@ -86,8 +84,6 @@ class PageEmployee extends React.Component {
 	
 					}
 				}))
-
-				this.props.changeActivePanel("EmployeesList");
 
 			});
 		});
@@ -191,7 +187,7 @@ class PageEmployee extends React.Component {
 
 					<div style={buttonsStyle}>
 						<input style={submitStyle} type="submit" value="Save" />
-						<input style={cancelStyle} type="reset" value="Cancel" onClick={() => { this.props.changeActivePanel("EmployeesList") }} />
+						<input style={cancelStyle} type="reset" value="Cancel" />
 					</div>
 
 				</form>
